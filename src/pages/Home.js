@@ -189,10 +189,22 @@ export default function Home() {
       <SpinToWinModal isOpen={isSpinModalOpen} onClose={handleModalClose} />
 
       {/* --- Hero Section (New) --- */}
-      <div className="hero-section">
-        <div className="hero-content">
+      <div className="hero-section" style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/placeholder-hero.jpg)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '400px', /* Adjust height as needed */
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white', /* Text color over image */
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div className="hero-content" style={{ zIndex: 1 }}>
           <h1>Shop With Us</h1>
-          <img src={process.env.PUBLIC_URL + "/placeholder-hero.jpg"} alt="Hero Background" style={{ width: '100%', height: 'auto', maxHeight: '400px', objectFit: 'cover', marginBottom: '20px' }} />
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Maecenas sed diam eget risus varius blandit sit amet non magna.
