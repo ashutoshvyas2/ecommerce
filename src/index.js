@@ -87,8 +87,9 @@ import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <CartProvider>
-    <BrowserRouter basename="/react-ecommerce">
+    <BrowserRouter basename="/ecommerce">
       <App />
     </BrowserRouter>
   </CartProvider>
 );
+
