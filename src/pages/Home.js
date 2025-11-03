@@ -192,6 +192,7 @@ export default function Home() {
       <div className="hero-section">
         <div className="hero-content">
           <h1>Shop With Us</h1>
+          <img src={process.env.PUBLIC_URL + "/placeholder-hero.jpg"} alt="Hero Background" style={{ width: '100%', height: 'auto', maxHeight: '400px', objectFit: 'cover', marginBottom: '20px' }} />
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Maecenas sed diam eget risus varius blandit sit amet non magna.
