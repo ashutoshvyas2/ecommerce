@@ -1,25 +1,74 @@
-import logo from './logo.svg';
-import './App.css';
+// import { Routes, Route } from "react-router-dom";
+// import Home from "./pages/Home";
+// import ProductPage from "./pages/ProductPage";
+// import Cart from "./pages/Cart";
+// import Navbar from "./components/Navbar";
+// import CheckoutPage from "./pages/CheckoutPage";
+
+// // IMPORT THE CONTEXT PROVIDERS HERE
+// import { CartProvider } from "./context/CartContext";
+// import { SearchProvider } from "./context/SearchContext"; 
+
+// function App() {
+//   // NOTE: If you are using `BrowserRouter` in `src/index.js`, 
+//   // you do not need it here. We are focusing on wrapping the components 
+//   // that rely on the context.
+//   return (
+//     // Wrap the entire application structure with the necessary Providers.
+//     // The components (Navbar, Home) must be INSIDE the providers to access the context.
+//     <CartProvider>
+//       <SearchProvider>
+//         <Navbar />
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="/product/:id" element={<ProductPage />} />
+//           <Route path="/cart" element={<Cart />} />
+//           <Route path="/checkout" element={<CheckoutPage />} />
+//         </Routes>
+//       </SearchProvider>
+//     </CartProvider>
+//   );
+// }
+
+// export default App;
+
+
+
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ProductPage from "./pages/ProductPage";
+import Cart from "./pages/Cart";
+import Navbar from "./components/Navbar";
+import CheckoutPage from "./pages/CheckoutPage";
+// 1. IMPORT THE NEW SUPPORT PAGE
+import SupportPage from "./pages/SupportPage"; 
+
+// IMPORT THE CONTEXT PROVIDERS HERE
+import { CartProvider } from "./context/CartContext";
+import { SearchProvider } from "./context/SearchContext"; 
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // NOTE: If you are using `BrowserRouter` in `src/index.js`, 
+  // you do not need it here. We are focusing on wrapping the components 
+  // that rely on the context.
+  return (
+    // Wrap the entire application structure with the necessary Providers.
+    // The components (Navbar, Home) must be INSIDE the providers to access the context.
+    <CartProvider>
+      <SearchProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          {/* 2. ADD THE ROUTE FOR THE SUPPORT PAGE */}
+          <Route path="/support" element={<SupportPage />} />
+        </Routes>
+      </SearchProvider>
+    </CartProvider>
+  );
 }
 
 export default App;
+

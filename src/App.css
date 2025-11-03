@@ -1,38 +1,360 @@
-.App {
+/* -----------------------------------------------------------------
+   GLOBAL RESETS AND TYPOGRAPHY 
+----------------------------------------------------------------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5; /* Global light gray background */
+  color: #333;
+  line-height: 1.6;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+/* Utility Class for Centering Content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Padding for mobile safety */
+}
+
+/* -----------------------------------------------------------------
+   NAVBAR STYLES (App.css might be managing this, but included for completeness)
+----------------------------------------------------------------- */
+nav {
+  background-color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: #ff5e3a; /* Matching cart checkout color for brand consistency */
+}
+
+/* -----------------------------------------------------------------
+   PRODUCT LISTING LAYOUT (Grid Format)
+----------------------------------------------------------------- */
+.product-grid {
+  /* Enforce Grid Display for side-by-side layout */
+  display: grid;
+  /* Responsive columns: at least 250px wide, filling available space */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 40px 0; /* Padding handled by .container above */
+  justify-content: center; /* Center items within the grid */
+}
+
+/* -----------------------------------------------------------------
+   PIXEL CARD STYLES (Used by PixelCard.js)
+----------------------------------------------------------------- */
+.pixel-card-container {
+  display: block;
+  width: 100%;
+  padding: 8px; /* For the 'pixel' border effect */
+  box-sizing: border-box;
+}
+
+.pixel-card {
+  /* Base card styling */
+  background-color: #fff;
+  padding: 20px;
+  border: 4px solid #333;
+  box-shadow: 4px 4px 0 0 #333; /* Simulated pixel shadow */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+}
+
+.pixel-card:hover {
+  transform: translate(-2px, -2px); /* Slight 'pop' effect */
+  box-shadow: 6px 6px 0 0 #333;
+}
+
+.pixel-card-content {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.pixel-card-image {
+  max-width: 100%;
+  height: auto;
+  min-height: 180px; /* Ensure a minimum height for alignment */
+  object-fit: contain;
+  margin-bottom: 15px;
+  display: block;
+  border: 1px solid #ddd;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.pixel-card-name {
+  font-size: 1.2rem;
+  margin: 10px 0 5px;
+  font-weight: 700;
+}
+
+.pixel-card-price {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #ff5e3a; /* Highlight price */
+  font-weight: 800;
+}
+
+.pixel-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+/* Shared Button Styles */
+.pixel-btn-primary, .pixel-btn-secondary {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 3px solid #333;
+  border-radius: 0; /* Pixel style */
+  cursor: pointer;
+  transition: background-color 0.1s, color 0.1s, box-shadow 0.1s;
+  text-decoration: none; /* For link buttons */
+  display: block; /* Full width */
+  text-align: center;
+}
+
+/* 'View Details' Button (Secondary) */
+.pixel-btn-secondary {
+  background-color: #f7f7f7;
+  color: #333;
+}
+.pixel-btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* 'Add to Cart' Button (Primary) */
+.pixel-btn-primary {
+  background-color: #28a745; /* Green */
+  color: white;
+  box-shadow: 2px 2px 0 0 #333;
+}
+.pixel-btn-primary:hover {
+  background-color: #218838;
+  box-shadow: 3px 3px 0 0 #333;
+}
+
+
+/* -----------------------------------------------------------------
+   PRODUCT PAGE 
+----------------------------------------------------------------- */
+.product-detail {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  padding: 40px;
+  gap: 40px;
+  background-color: #fff;
+  max-width: 1000px;
+  margin: 40px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.product-detail img {
+  max-width: 100%;
+  width: 300px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* -----------------------------------------------------------------
+   CART PAGE STYLES (New Design)
+----------------------------------------------------------------- */
+.cart-page-wrapper {
+  max-width: 1100px; /* Wider container for the cart page */
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr; /* Two columns: Items (wider) and Summary (narrower) */
+  gap: 60px;
+  margin-top: 40px;
+}
+
+/* Mobile Layout Adjustment */
+@media (max-width: 768px) {
+  .cart-layout {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 40px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.cart-header {
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr; /* Product | Price | Quantity | Total */
+  border-bottom: 2px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.cart-header > div:not(:first-child) {
+  text-align: right;
+}
+
+/* Individual Cart Item Styling */
+.cart-item-row {
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr; /* Matches the header layout */
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.cart-item-row > div:not(:first-child) {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .cart-header { display: none; } /* Hide header on mobile */
+  .cart-item-row { 
+    grid-template-columns: 1fr 1fr; /* Product Info | Price/Qty/Total Stack */
+    grid-template-areas: 
+      "info info"
+      "price qty"
+      "total total";
+    row-gap: 10px;
+  }
+  .cart-item-row > div:nth-child(2) { grid-area: price; }
+  .cart-item-row > div:nth-child(3) { grid-area: qty; display: flex; justify-content: flex-end; align-items: center; } /* Quantity Controls */
+  .cart-item-row > div:nth-child(4) { grid-area: total; text-align: left !important; font-size: 1.2rem; margin-top: 10px;}
+}
+
+
+.cart-product-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.cart-product-info img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.cart-item-name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cart-item-remove {
+  font-size: 0.8rem;
+  color: #a0a0a0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.quantity-controls button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.1s;
+  line-height: 1; /* Fix vertical alignment */
+}
+
+.quantity-controls span {
+  padding: 0 10px;
+  font-weight: 500;
+}
+
+/* Summary Box Styling */
+.cart-summary {
+  background-color: #f7f7f7;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.cart-summary h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.summary-subtotal {
+  font-weight: 700;
+}
+
+.summary-actions button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkout-btn {
+  background-color: #ff5e3a; /* Orange color */
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.update-btn {
+  background-color: #ccc; 
+  color: #333;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Checkout Page */
+.checkout-form {
+  padding: 40px;
+  background-color: #fff;
+  max-width: 500px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.checkout-form h1 {
+  margin-bottom: 20px;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
 }
