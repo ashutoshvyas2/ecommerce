@@ -149,7 +149,7 @@ export default function ProductPage() {
           </button>
         </div>
         
-        <a href="#" className="more-payment-options">More payment options</a>
+        <button type="button" className="more-payment-options">More payment options</button>
 
         {/* Long Description */}
         <div className="product-long-description-ub">
