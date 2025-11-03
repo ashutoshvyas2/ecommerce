@@ -188,7 +188,7 @@ export default function Navbar() {
         >
           {/* Re-adding the Logo Image Link here */}
           <img 
-            src="https://placehold.co/60x30/FFFFFF/000000?text=VT"
+            src="C:\Users\vyasa\react\ecommerce-app\public\vt_logo.jpg"
             alt="" 
             style={{ height: '30px', width: 'auto', display: 'block' }} 
           />
