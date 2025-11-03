@@ -188,7 +188,7 @@ export default function Navbar() {
         >
           {/* Re-adding the Logo Image Link here */}
           <img 
-            src="/vt_logo.jpg"
+            src={process.env.PUBLIC_URL + "/vt_logo.jpg"}
             alt="" 
             style={{ height: '30px', width: 'auto', display: 'block' }} 
           />
