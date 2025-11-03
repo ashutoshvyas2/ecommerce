@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ashutoshvyas2/ecommerce/static/css/main.0e06dabe.css",
+    "main.js": "/ashutoshvyas2/ecommerce/static/js/main.f5bf2faa.js",
+    "index.html": "/ashutoshvyas2/ecommerce/index.html",
+    "main.0e06dabe.css.map": "/ashutoshvyas2/ecommerce/static/css/main.0e06dabe.css.map",
+    "main.f5bf2faa.js.map": "/ashutoshvyas2/ecommerce/static/js/main.f5bf2faa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0e06dabe.css",
+    "static/js/main.f5bf2faa.js"
+  ]
+}
